@@ -1,0 +1,101 @@
+package cursos1;
+
+import java.util.Random;
+
+public class Curso {
+
+	private final String nombreCurso;
+	private final int cantidadMax;
+	private final int cantidadInscritos;
+
+	{
+		Random random = new Random();
+		cantidadMax = random.nextInt(35 - 20 + 1) + 20;
+	}
+
+	
+	public Curso(String nombreCurso, int cantidadInscritos) {
+		this.nombreCurso = nombreCurso;
+		if (cantidadMax<cantidadInscritos) {
+			System.out.println("El número de alumnos no puede exceder a: "+cantidadMax);
+			this.cantidadInscritos=cantidadMax;
+		}else {
+			this.cantidadInscritos=cantidadInscritos;
+		}
+	}
+	
+
+	public String getNombreCurso() {
+		return nombreCurso;
+	}
+
+	public int getCantidadMax() {
+		return cantidadMax;
+	}
+
+	public int getCantidadInscritos() {
+		return cantidadInscritos;
+	}
+
+
+	public String toString() {
+		return "El curso " + this.nombreCurso + " tiene " + this.cantidadInscritos+ " alumnos";	
+	}
+	
+Main	
+
+}
+
+
+package cursos1;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Curso a1 = new Curso("Matematica",18);
+		Curso a2 = new Curso("Fisica",25);
+		Curso a3 = new Curso("Quimica",20);
+		
+		Curso b1 = new Curso("Matematica",32);
+		Curso b2 = new Curso("Fisica",15);
+		Curso b3 = new Curso("Quimica",28);
+		Curso b4 = new Curso("Biologia",32);
+		Curso b5 = new Curso("Historia",32);
+		Curso b6 = new Curso("Geografia",32);
+		
+		Curso c1 = new Curso("Literatura",18);
+		Curso c2 = new Curso("Artes",25);
+		Curso c3 = new Curso("Botanica",20);
+		Curso c4 = new Curso("Programacion",34);
+		
+		Curso [][] sucursal = new Curso[3][];
+		sucursal[0]= new Curso[] {a1,a2,a3,null,null};
+		sucursal[1]= new Curso[] {b1,b2,b3,b4,b5,b6,null};
+		sucursal[2]= new Curso[] {c1,c2,c3,c4};
+		System.out.println("");
+		for(int i=0;i<3;i++) {
+			switch (i) {
+			case 0:
+				System.out.println("Sucursal A");
+				break;
+			case 1:
+				System.out.println("Sucursal B");
+				break;
+			case 2:
+				System.out.println("Sucursal C");
+				break;
+			} 
+			for(int j=0;j<sucursal[i].length;j++) {
+				if (sucursal[i][j] != null) {
+					System.out.println(sucursal[i][j].toString()+ ", capacidad maxima: "+sucursal[i][j].getCantidadMax() );
+				}
+				
+			}
+			System.out.println("");
+		}
+		
+		
+	}
+
+}
